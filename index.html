@@ -24,52 +24,29 @@
     <!-- Agrega los scripts de Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
-    <script>
-      //@ts-check
-
-      // Configura tu proyecto de Firebase
+    
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
-        apiKey: "TU_API_KEY",
-        authDomain: "TU_DOMINIO_AUTH.firebaseapp.com",
-        projectId: "TU_ID_PROYECTO",
-        storageBucket: "TU_BUCKET.appspot.com",
-        messagingSenderId: "TU_SENDER_ID",
-        appId: "TU_APP_ID",
-        measurementId: "TU_MEASUREMENT_ID"
+        apiKey: "AIzaSyDKLi9AnpN56z2i67exJCaDqYcV86ir8wQ",
+        authDomain: "autic33-bb1da.firebaseapp.com",
+        projectId: "autic33-bb1da",
+        storageBucket: "autic33-bb1da.appspot.com",
+        messagingSenderId: "798171307673",
+        appId: "1:798171307673:web:62a896dd5c7dae8bf2e208",
+        measurementId: "G-LV69BE287C"
       };
-
-      // Inicializa Firebase
-      firebase.initializeApp(firebaseConfig);
-
-      // Obtiene una referencia al servicio de autenticación de Firebase
-      const auth = firebase.auth();
-
-      // Configura el proveedor de autenticación con Google
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.setCustomParameters({ prompt: "select_account" });
-
-      // Manejador de cambios en el estado de autenticación
-      auth.onAuthStateChanged((usuarioAuth) => {
-        if (usuarioAuth && usuarioAuth.email) {
-          // Usuario autenticado
-          document.getElementById("email").textContent = usuarioAuth.email;
-          document.getElementById("nombre").textContent = usuarioAuth.displayName;
-          document.getElementById("avatar").src = usuarioAuth.photoURL;
-        } else {
-          // No ha iniciado sesión. Redirige al usuario para iniciar sesión con Google
-          auth.signInWithRedirect(provider);
-        }
-      });
-
-      // Termina la sesión del usuario
-      async function terminaSesión() {
-        try {
-          await auth.signOut();
-        } catch (e) {
-          console.log(e);
-        }
-      }
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
     </script>
   </body>
 </html>
